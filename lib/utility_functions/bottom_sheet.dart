@@ -13,7 +13,7 @@ Future<void> addNoteBottomSheet(context) {
     context: context,
     isScrollControlled: true,
     builder: (context) {
-      //to do import images
+      //to do: import images
 
       return Padding(
         padding: EdgeInsets.only(

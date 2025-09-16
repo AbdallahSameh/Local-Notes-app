@@ -19,10 +19,6 @@ class ListNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void refreshUI() {
-    notifyListeners();
-  }
-
   Future<void> addNote(Notes note) async {
     await ldb.insert(db, note);
     notes = await ldb.getAll(db);

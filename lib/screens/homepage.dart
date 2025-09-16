@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:local_notes/listnotifier.dart';
+import 'package:local_notes/screens/detailpage.dart';
 import 'package:local_notes/utility_functions/bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
@@ -38,6 +39,15 @@ class HomePage extends StatelessWidget {
                 title: Text(notes[index].title.toString()),
                 subtitle: Text(notes[index].subtitle.toString()),
                 trailing: Text(notes[index].lastModified.toString()),
+                onTap: () {
+                  print('note: ${notes[index].toMap().toString()}');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailPage(note: notes[index]),
+                    ),
+                  );
+                },
               ),
             );
           },
