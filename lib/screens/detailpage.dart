@@ -14,6 +14,7 @@ class _DetailPageState extends State<DetailPage> {
   late TextEditingController controller;
   @override
   void initState() {
+    print("note: ${widget.note.title}");
     controller = TextEditingController(text: widget.note.content);
 
     super.initState();
@@ -29,7 +30,9 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.note.title.toString())),
-      body: SafeArea(child: TextFormField(controller: controller)),
+      body: SafeArea(
+        child: TextFormField(controller: controller, maxLines: null),
+      ),
     );
   }
 }
