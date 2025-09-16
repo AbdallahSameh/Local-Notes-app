@@ -14,6 +14,23 @@ class HomePage extends StatelessWidget {
           itemBuilder: (context, index) {
             return Dismissible(
               key: ValueKey(notes[index].id),
+              confirmDismiss: (value) async {
+                bool delete = true;
+                var snackbar = ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Note Deleted'),
+                    duration: Duration(seconds: 3),
+                    action: SnackBarAction(
+                      label: 'Undo',
+                      onPressed: () {
+                        delete = false;
+                      },
+                    ),
+                  ),
+                );
+                await snackbar.closed;
+                return delete;
+              },
               onDismissed: (direction) {
                 context.read<ListNotifier>().deleteNote(notes[index].id);
               },
