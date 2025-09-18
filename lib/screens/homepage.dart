@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
                 bool delete = true;
                 var snackbar = ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('Note Deleted'),
+                    content: Text('${notes[index].title} is deleted'),
                     duration: Duration(seconds: 3),
                     action: SnackBarAction(
                       label: 'Undo',
@@ -42,7 +42,6 @@ class HomePage extends StatelessWidget {
                 trailing: Text(notes[index].lastModified.toString()),
                 onTap: () {
                   Notes note = notes[index];
-                  print("Tapped note: ${notes[index].title}");
                   Navigator.push(
                     context,
                     MaterialPageRoute(

@@ -51,9 +51,9 @@ Future<void> addNoteBottomSheet(context) {
                       'last_modified': DateTime.now().toIso8601String(),
                     };
 
-                    var note = Notes.fromMap(data);
+                    Notes note = Notes.fromMap(data);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Form is valid!')),
+                      SnackBar(content: Text('${note.title} is added!')),
                     );
                     await context.read<ListNotifier>().addNote(note);
                     Navigator.of(context).pop();

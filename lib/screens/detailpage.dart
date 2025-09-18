@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:local_notes/listnotifier.dart';
 import 'package:local_notes/models/notes.dart';
+import 'package:provider/provider.dart';
 
 class DetailPage extends StatefulWidget {
   final Notes note;
@@ -23,6 +25,8 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void dispose() {
     controller.dispose();
+    widget.note.content = controller.text;
+    context.read<ListNotifier>().updateNote(widget.note);
     super.dispose();
   }
 
