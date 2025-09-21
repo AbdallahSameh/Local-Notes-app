@@ -3,6 +3,7 @@ import 'package:local_notes/listnotifier.dart';
 import 'package:local_notes/models/notes.dart';
 import 'package:local_notes/shared/custom_form_field.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 Future<void> addNoteBottomSheet(context) {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -48,7 +49,9 @@ Future<void> addNoteBottomSheet(context) {
                       'title': titleField.text,
                       'subtitle': subtitleField.text,
                       'content': contentField.text,
-                      'last_modified': DateTime.now().toIso8601String(),
+                      'last_modified': DateFormat(
+                        'yyyy/MM/dd',
+                      ).add_jm().format(DateTime.now()),
                     };
 
                     Notes note = Notes.fromMap(data);

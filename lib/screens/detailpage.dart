@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:local_notes/listnotifier.dart';
 import 'package:local_notes/models/notes.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,9 @@ class _DetailPageState extends State<DetailPage> {
   @override
   void dispose() {
     widget.note.content = controller.text;
+    widget.note.lastModified = DateFormat(
+      'yyyy/MM/dd',
+    ).add_jm().format(DateTime.now());
     notifier.updateNote(widget.note);
     controller.dispose();
     super.dispose();
