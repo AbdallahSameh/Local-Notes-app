@@ -14,19 +14,21 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   late TextEditingController controller;
+  late ListNotifier notifier = context.read<ListNotifier>();
+
   @override
   void initState() {
     print("note: ${widget.note.title}");
     controller = TextEditingController(text: widget.note.content);
-
+    notifier = context.read<ListNotifier>();
     super.initState();
   }
 
   @override
   void dispose() {
-    controller.dispose();
     widget.note.content = controller.text;
-    context.read<ListNotifier>().updateNote(widget.note);
+    notifier.updateNote(widget.note);
+    controller.dispose();
     super.dispose();
   }
 
