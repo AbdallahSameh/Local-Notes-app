@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Notes',
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 30),
         ),
         centerTitle: true,
         toolbarHeight: 100,
@@ -26,80 +26,96 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsetsGeometry.only(
-            left: 10,
-            right: 10,
-            top: 20,
-            bottom: 10,
-          ),
-          child: ListView.separated(
-            itemBuilder: (context, index) {
-              return Dismissible(
-                key: ValueKey(notes[index].id),
-                confirmDismiss: (value) async {
-                  bool delete = true;
-                  var snackbar = ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('${notes[index].title} is deleted'),
-                      duration: Duration(seconds: 3),
-                      action: SnackBarAction(
-                        label: 'Undo',
-                        onPressed: () {
-                          delete = false;
+      body: notes.isEmpty
+          ? Center(child: Text('No notes yet, tap + to add one'))
+          : SafeArea(
+              child: Padding(
+                padding: EdgeInsetsGeometry.only(
+                  left: 10,
+                  right: 10,
+                  top: 20,
+                  bottom: 20,
+                ),
+                child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    return Dismissible(
+                      key: ValueKey(notes[index].id),
+                      confirmDismiss: (value) async {
+                        bool delete = true;
+                        var snackbar = ScaffoldMessenger.of(context)
+                            .showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  '${notes[index].title} is deleted',
+                                ),
+                                duration: Duration(seconds: 3),
+                                action: SnackBarAction(
+                                  label: 'Undo',
+                                  onPressed: () {
+                                    delete = false;
+                                  },
+                                ),
+                              ),
+                            );
+                        await snackbar.closed;
+                        return delete;
+                      },
+                      onDismissed: (direction) {
+                        context.read<ListNotifier>().deleteNote(
+                          notes[index].id,
+                        );
+                      },
+                      child: ListTile(
+                        tileColor: Color(0xfffffdf4),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadiusGeometry.circular(10),
+                        ),
+                        title: Text(
+                          notes[index].title.toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                          ),
+                        ),
+                        subtitle: Text(
+                          notes[index].subtitle.toString(),
+                          style: TextStyle(color: Colors.grey[600]),
+                        ),
+                        trailing: Text(
+                          DateFormat('yyyy/MM/dd').add_jm().format(
+                            DateTime.parse(
+                              notes[index].lastModified.toString(),
+                            ),
+                          ),
+                          style: TextStyle(color: Colors.grey[500]),
+                        ),
+                        onTap: () {
+                          Notes note = notes[index];
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailPage(note: note),
+                            ),
+                          );
                         },
-                      ),
-                    ),
-                  );
-                  await snackbar.closed;
-                  return delete;
-                },
-                onDismissed: (direction) {
-                  context.read<ListNotifier>().deleteNote(notes[index].id);
-                },
-                child: ListTile(
-                  tileColor: Color(0xfffffdf4),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadiusGeometry.circular(10),
-                  ),
-                  title: Text(
-                    notes[index].title.toString(),
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                  ),
-                  subtitle: Text(notes[index].subtitle.toString()),
-                  trailing: Text(
-                    DateFormat('yyyy/MM/dd').add_jm().format(
-                      DateTime.parse(notes[index].lastModified.toString()),
-                    ),
-                  ),
-                  onTap: () {
-                    Notes note = notes[index];
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailPage(note: note),
                       ),
                     );
                   },
+                  separatorBuilder: (context, index) {
+                    return SizedBox(height: 13);
+                  },
+                  itemCount: notes.length,
                 ),
-              );
-            },
-            separatorBuilder: (context, index) {
-              return SizedBox(height: 10);
-            },
-            itemCount: notes.length,
-          ),
-        ),
-      ),
+              ),
+            ),
       floatingActionButton: SizedBox(
-        width: 75,
-        height: 75,
+        width: 70,
+        height: 70,
         child: FloatingActionButton(
           backgroundColor: Color(0xffe3a365),
           foregroundColor: Colors.black,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadiusGeometry.circular(40),
+            borderRadius: BorderRadiusGeometry.circular(35),
           ),
           onPressed: () {
             addNoteBottomSheet(context);
