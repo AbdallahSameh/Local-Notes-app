@@ -8,7 +8,7 @@ class Notes {
     this.title,
     this.subtitle,
     this.content,
-    this.lastModified,
+    required this.lastModified,
   });
 
   factory Notes.fromMap(Map<String, dynamic> map) {
