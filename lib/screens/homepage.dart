@@ -65,47 +65,54 @@ class HomePage extends StatelessWidget {
                           notes[index].id,
                         );
                       },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xFFFFFEFA),
-                          borderRadius: BorderRadiusGeometry.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 8,
-                              offset: Offset(0, 4),
+                      child: Hero(
+                        tag: notes[index].id.toString(),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFFFEFA),
+                              borderRadius: BorderRadiusGeometry.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black12,
+                                  blurRadius: 8,
+                                  offset: Offset(0, 4),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: ListTile(
-                          title: Text(
-                            notes[index].title.toString(),
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                            ),
-                          ),
-                          subtitle: Text(
-                            notes[index].subtitle.toString(),
-                            style: TextStyle(color: Colors.grey[600]),
-                          ),
-                          trailing: Text(
-                            DateFormat('yyyy/MM/dd').add_jm().format(
-                              DateTime.parse(
-                                notes[index].lastModified.toString(),
+                            child: ListTile(
+                              title: Text(
+                                notes[index].title.toString(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                ),
                               ),
-                            ),
-                            style: TextStyle(color: Colors.grey[500]),
-                          ),
-                          onTap: () {
-                            Notes note = notes[index];
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DetailPage(note: note),
+                              subtitle: Text(
+                                notes[index].subtitle.toString(),
+                                style: TextStyle(color: Colors.grey[600]),
                               ),
-                            );
-                          },
+                              trailing: Text(
+                                DateFormat('yyyy/MM/dd').add_jm().format(
+                                  DateTime.parse(
+                                    notes[index].lastModified.toString(),
+                                  ),
+                                ),
+                                style: TextStyle(color: Colors.grey[500]),
+                              ),
+                              onTap: () {
+                                Notes note = notes[index];
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        DetailPage(note: note),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
                         ),
                       ),
                     );
