@@ -77,11 +77,14 @@ class _DetailPageState extends State<DetailPage> {
                     ),
                   ],
                 ),
-                child: TextFormField(
-                  controller: controller,
-                  maxLines: null,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(borderSide: BorderSide.none),
+                child: Material(
+                  color: Colors.transparent,
+                  child: TextFormField(
+                    controller: controller,
+                    maxLines: null,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(borderSide: BorderSide.none),
+                    ),
                   ),
                 ),
               ),

@@ -14,7 +14,18 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (context) => ListNotifier())],
-      child: MaterialApp(debugShowCheckedModeBanner: false, home: HomePage()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+
+        theme: ThemeData(
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: Color(0xffe3a365),
+            selectionColor: Color(0xffe3a365).withOpacity(0.3),
+            selectionHandleColor: Color(0xffe3a365),
+          ),
+        ),
+        home: HomePage(),
+      ),
     );
   }
 }

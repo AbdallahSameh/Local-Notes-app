@@ -33,6 +33,7 @@ class CustomFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(25),
           borderSide: BorderSide.none,
         ),
+        floatingLabelStyle: TextStyle(color: Color(0xffe3a365)),
       ),
     );
   }
