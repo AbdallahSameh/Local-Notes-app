@@ -34,28 +34,28 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: widget.note.id.toString(),
-      child: Scaffold(
-        backgroundColor: Color(0xfffcf9f0),
-        appBar: AppBar(
-          title: Text(
-            widget.note.title.toString(),
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 30),
-          ),
-          centerTitle: true,
-          backgroundColor: Color(0xfff0d0ae),
-          toolbarHeight: 100,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadiusGeometry.vertical(
-              bottom: Radius.circular(10),
-            ),
+    return Scaffold(
+      backgroundColor: Color(0xfffcf9f0),
+      appBar: AppBar(
+        title: Text(
+          widget.note.title.toString(),
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 30),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xfff0d0ae),
+        toolbarHeight: 100,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.vertical(
+            bottom: Radius.circular(10),
           ),
         ),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.only(left: 10, right: 10, top: 20),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(left: 10, right: 10, top: 20),
+            child: Hero(
+              tag: widget.note.id.toString(),
               child: Container(
                 constraints: BoxConstraints(
                   minHeight: MediaQuery.of(context).size.height - 190,
