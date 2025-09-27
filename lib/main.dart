@@ -12,25 +12,24 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = ThemeData(
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: Color(0xffe3a365),
+      ),
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: Color(0xffe3a365),
+        selectionColor: Color(0xffe3a365).withValues(alpha: 0.3),
+        selectionHandleColor: Color(0xffe3a365),
+      ),
+    );
+
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (context) => ListNotifier())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
 
-        theme: ThemeData(
-          textSelectionTheme: TextSelectionThemeData(
-            cursorColor: Color(0xffe3a365),
-            selectionColor: Color(0xffe3a365).withValues(alpha: 0.3),
-            selectionHandleColor: Color(0xffe3a365),
-          ),
-        ),
-        darkTheme: ThemeData(
-          textSelectionTheme: TextSelectionThemeData(
-            cursorColor: Color(0xffe3a365),
-            selectionColor: Color(0xffe3a365).withValues(alpha: 0.3),
-            selectionHandleColor: Color(0xffe3a365),
-          ),
-        ),
+        theme: theme,
+        darkTheme: theme,
 
         home: HomePage(),
       ),

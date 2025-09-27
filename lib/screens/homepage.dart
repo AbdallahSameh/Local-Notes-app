@@ -12,10 +12,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final notes = context.watch<ListNotifier>().notes;
 
-    if (context.watch<ListNotifier>().isLoading) {
-      return Scaffold(body: Center(child: CircularProgressIndicator()));
-    }
-
     return Scaffold(
       backgroundColor: Color(0xfffcf9f0),
       appBar: AppBar(
@@ -32,7 +28,9 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: notes.isEmpty
+      body: context.watch<ListNotifier>().isLoading
+          ? Center(child: CircularProgressIndicator())
+          : notes.isEmpty
           ? Center(child: Text('No notes yet, tap + to add one'))
           : SafeArea(
               child: Padding(

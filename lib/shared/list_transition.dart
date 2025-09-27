@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:local_notes/listnotifier.dart';
-import 'package:provider/provider.dart';
 
 class ListTransition extends StatefulWidget {
   final int index;
@@ -34,7 +32,7 @@ class _ListTransitionState extends State<ListTransition>
     final tileDuration = 2 / widget.itemCount;
     final start = (widget.index * 0.15).clamp(0.0, 1.0);
     final end = (start + tileDuration).clamp(0.0, 1.0);
-    slideAnimation = Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0))
+    slideAnimation = Tween<Offset>(begin: Offset(1.2, 0), end: Offset(0, 0))
         .animate(
           CurvedAnimation(
             parent: _controller,
