@@ -7,6 +7,7 @@ class ListNotifier extends ChangeNotifier {
   late Database db;
   late LocalDatabase ldb;
   List<Notes> notes = [];
+  bool isLoading = true;
 
   ListNotifier() {
     Future.microtask(() => init());
@@ -16,6 +17,7 @@ class ListNotifier extends ChangeNotifier {
     ldb = LocalDatabase();
     db = await LocalDatabase.open();
     notes = await ldb.getAll(db);
+    isLoading = false;
     notifyListeners();
   }
 

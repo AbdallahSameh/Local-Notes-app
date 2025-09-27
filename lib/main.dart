@@ -20,10 +20,18 @@ class MainApp extends StatelessWidget {
         theme: ThemeData(
           textSelectionTheme: TextSelectionThemeData(
             cursorColor: Color(0xffe3a365),
-            selectionColor: Color(0xffe3a365).withOpacity(0.3),
+            selectionColor: Color(0xffe3a365).withValues(alpha: 0.3),
             selectionHandleColor: Color(0xffe3a365),
           ),
         ),
+        darkTheme: ThemeData(
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: Color(0xffe3a365),
+            selectionColor: Color(0xffe3a365).withValues(alpha: 0.3),
+            selectionHandleColor: Color(0xffe3a365),
+          ),
+        ),
+
         home: HomePage(),
       ),
     );
