@@ -14,13 +14,18 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   late TextEditingController controller;
-  late ListNotifier notifier = context.read<ListNotifier>();
+  late ListNotifier notifier;
 
   @override
   void initState() {
-    controller = TextEditingController(text: widget.note.content);
-    notifier = context.read<ListNotifier>();
     super.initState();
+    controller = TextEditingController(text: widget.note.content);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    notifier = context.read<ListNotifier>();
   }
 
   @override

@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final notes = context.watch<ListNotifier>().notes;
+    final notes = context.watch<ListNotifier?>()?.notes ?? [];
 
     return Scaffold(
       backgroundColor: Color(0xfffcf9f0),
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: context.watch<ListNotifier>().isLoading
+      body: (context.watch<ListNotifier?>()?.isLoading ?? true)
           ? Center(child: CircularProgressIndicator())
           : notes.isEmpty
           ? Center(child: Text('No notes yet, tap + to add one'))
@@ -90,20 +90,20 @@ class HomePage extends StatelessWidget {
                               ),
                               child: ListTile(
                                 title: Text(
-                                  notes[index].title.toString(),
+                                  notes[index].title ?? '',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 20,
                                   ),
                                 ),
                                 subtitle: Text(
-                                  notes[index].subtitle.toString(),
+                                  notes[index].subtitle ?? '',
                                   style: TextStyle(color: Colors.grey[600]),
                                 ),
                                 trailing: Text(
                                   DateFormat('yyyy/MM/dd').add_jm().format(
                                     DateTime.parse(
-                                      notes[index].lastModified.toString(),
+                                      notes[index].lastModified ?? '',
                                     ),
                                   ),
                                   style: TextStyle(color: Colors.grey[500]),
