@@ -58,6 +58,9 @@ class HomePage extends StatelessWidget {
                                   duration: Duration(seconds: 3),
                                   action: SnackBarAction(
                                     label: 'Undo',
+                                    textColor: Theme.of(
+                                      context,
+                                    ).textSelectionTheme.selectionHandleColor,
                                     onPressed: () {
                                       delete = false;
                                     },
