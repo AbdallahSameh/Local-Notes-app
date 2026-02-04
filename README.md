@@ -50,7 +50,7 @@ Local Notes helps users write, store, and manage notes completely offline with f
 - UI automatically rebuilds when notes are added or removed.
 
 ## 📸 Screenshots
-    ![Splash Screen](screenshots/Screenshot_1770203895.png) 
-    ![Main Screen](screenshots/Screenshot_1770203770.png) 
-    ![Add Notes Dialog](screenshots/Screenshot_1770203779.png) 
-    ![Note Details](screenshots/Screenshot_1770203784.png)
+![Splash Screen](screenshots/Screenshot_1770203895.png) 
+![Main Screen](screenshots/Screenshot_1770203770.png) 
+![Add Notes Dialog](screenshots/Screenshot_1770203779.png) 
+![Note Details](screenshots/Screenshot_1770203784.png)
