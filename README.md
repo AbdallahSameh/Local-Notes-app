@@ -51,6 +51,9 @@ Local Notes helps users write, store, and manage notes completely offline with f
 
 ## 📸 Screenshots
 <img src="screenshots/Screenshot_1770203895.png" width="400" alt="Splash Screen"/> 
+
 <img src="screenshots/Screenshot_1770203770.png" width="400" alt="Main Screen"/> 
+
 <img src="screenshots/Screenshot_1770203779.png" width="400" alt="Add Notes Dialog"/> 
+
 <img src="screenshots/Screenshot_1770203784.png" width="400" alt="Note Details"/> 
